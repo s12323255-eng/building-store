@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html>
 <head>
@@ -22,9 +24,10 @@
         <a href="#products">Products</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact &#9742; </a>
-<span class="cart"><i class="fa-solid fa-cart-shopping"></i></span>
-
-
+<span class="cart">
+  <i class="fa-solid fa-cart-shopping"></i>
+  <span id="cart-count">empty</span> 
+</span>
         
     </nav>
 </header>
@@ -258,6 +261,7 @@
       <button class="add-btn">Add to Cart</button>
     </div>
 
+ 
     <div class="product-card">
       <img src="images/ele2.jpg" alt="Wall Lamp">
       <h3>Decor Wall Lamp</h3>
@@ -455,7 +459,7 @@ const cards = document.querySelectorAll('.product-card');
 function revealCards() {
   cards.forEach(card => {
     const cardTop = card.getBoundingClientRect().top;
-    const triggerPoint = window.innerHeight - 100;
+    const triggerPoint = window.innerHeight - 200;
 
     if (cardTop < triggerPoint) {
       card.classList.add('show');
@@ -499,18 +503,24 @@ document.getElementById("toTop").onclick = () => {
 
 </script>
 <script>
+let cartCount = 0; 
+const cartCountElement = document.getElementById("cart-count");
+
 document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+
+        cartCount++;
+        cartCountElement.innerText = cartCount;
 
         let toast = document.createElement("div");
         toast.className = "toast show";
         toast.innerText = "Added to cart!";
         document.body.appendChild(toast);
 
-        setTimeout(() => { toast.remove(); }, 2000);
+        setTimeout(() => { toast.remove(); }, 3000);
     });
 });
 </script>
+
 </body>
 </html>
-
